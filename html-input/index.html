@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>HTML Input Types</title>
+		<style>
+			:root {
+				--bg: #e9eef5;
+				--panel: #f6f8fb;
+				--card: #ffffff;
+				--stroke: #d2d9e5;
+				--stroke-strong: #b7c2d3;
+				--title-blue: #1d3f7a;
+				--title-teal: #00a5a8;
+				--text: #1f2d3d;
+				--muted: #5d6c80;
+				--accent: #1782d9;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				min-height: 100vh;
+				font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+				color: var(--text);
+				background: radial-gradient(circle at 10% 10%, #f8fbff 0, #eef3f9 30%, #e5ebf5 100%);
+				padding: 28px 18px;
+			}
+
+			.board {
+				width: min(980px, 100%);
+				margin: 0 auto;
+			}
+
+			.title {
+				margin: 0 0 18px;
+				text-align: center;
+				font-size: clamp(1.9rem, 4vw, 2.7rem);
+				letter-spacing: 1px;
+				font-weight: 800;
+				text-transform: uppercase;
+			}
+
+			.title .teal {
+				color: var(--title-teal);
+			}
+
+			.title .blue {
+				color: var(--title-blue);
+			}
+
+			.title .icon {
+				font-size: 0.6em;
+				margin-left: 8px;
+				padding: 3px 9px;
+				border: 2px solid #9fc7de;
+				border-radius: 10px;
+				color: #4a6f95;
+				vertical-align: middle;
+			}
+
+			.top {
+				display: grid;
+				grid-template-columns: 1.05fr 1fr;
+				gap: 20px;
+			}
+
+			.panel {
+				background: var(--panel);
+				border: 1px solid var(--stroke);
+				border-radius: 15px;
+				box-shadow: 0 2px 8px rgba(40, 69, 110, 0.08);
+				padding: 14px;
+			}
+
+			.codes,
+			.inputs {
+				display: grid;
+				gap: 10px;
+			}
+
+			.code-chip {
+				margin: 0;
+				border: 1px solid #dde4ef;
+				border-radius: 10px;
+				background: #f0f3f8;
+				font-family: Consolas, "Courier New", monospace;
+				font-size: 1.03rem;
+				color: #283444;
+				padding: 9px 11px;
+			}
+
+			.code-chip .green {
+				color: #2f8b3f;
+			}
+
+			.inputs input,
+			.inputs button,
+			.inputs select {
+				width: 100%;
+				font-size: 1.05rem;
+			}
+
+			.inputs input:not([type="checkbox"]):not([type="radio"]),
+			.inputs button,
+			.inputs select {
+				height: 43px;
+				border: 2px solid var(--stroke-strong);
+				border-radius: 10px;
+				padding: 0 12px;
+				background: #fff;
+			}
+
+			.inputs input:focus,
+			.inputs button:focus,
+			.inputs select:focus {
+				outline: 3px solid rgba(53, 135, 223, 0.25);
+				outline-offset: 1px;
+			}
+
+			.inputs .is-primary {
+				border-color: #73afd8;
+				box-shadow: 0 0 0 2px #d6ebf8 inset;
+			}
+
+			.inputs .row-inline {
+				display: flex;
+				align-items: center;
+				gap: 18px;
+				font-size: 2rem;
+			}
+
+			.inputs .row-inline input[type="checkbox"],
+			.inputs .row-inline input[type="radio"] {
+				width: 22px;
+				height: 22px;
+				accent-color: var(--accent);
+			}
+
+			.inputs .color-wrap {
+				border: 2px solid var(--stroke-strong);
+				border-radius: 10px;
+				height: 43px;
+				display: grid;
+				align-items: center;
+				padding: 0 8px;
+			}
+
+			.inputs input[type="color"] {
+				width: 120px;
+				height: 30px;
+				padding: 0;
+				border: none;
+				border-radius: 7px;
+				background: transparent;
+			}
+
+			.inputs input[type="range"] {
+				padding: 0;
+			}
+
+			.range-wrap {
+				margin-top: 1px;
+			}
+
+			.range-value {
+				text-align: right;
+				color: var(--muted);
+				font-weight: 600;
+				margin: 0 2px 4px 0;
+			}
+
+			.btn {
+				background: linear-gradient(#ffffff, #e9eef6);
+				font-weight: 600;
+				cursor: pointer;
+			}
+
+			.btn-submit {
+				background: linear-gradient(#35a5ff, #0f72d5);
+				color: #fff;
+				border-color: #3888ca;
+			}
+
+			.search-row {
+				display: grid;
+				grid-template-columns: 1fr auto;
+				gap: 8px;
+			}
+
+			.search-row .x {
+				align-self: stretch;
+				min-width: 42px;
+				display: grid;
+				place-items: center;
+				border: 2px solid var(--stroke-strong);
+				border-radius: 10px;
+				color: #6f7b8c;
+				font-size: 1.45rem;
+				line-height: 1;
+				background: #fff;
+			}
+
+			.bottom {
+				margin-top: 14px;
+				display: grid;
+				gap: 10px;
+			}
+
+			.bottom-row {
+				display: grid;
+				grid-template-columns: 1.05fr 1fr;
+				gap: 20px;
+			}
+
+			.bottom-label,
+			.bottom-value {
+				background: var(--panel);
+				border: 1px solid var(--stroke);
+				border-radius: 12px;
+				padding: 10px 12px;
+			}
+
+			.bottom-label {
+				font-family: Consolas, "Courier New", monospace;
+				font-size: 1.02rem;
+				color: #283444;
+			}
+
+			.bottom-label .green {
+				color: #2f8b3f;
+			}
+
+			.bottom-value {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+
+			.bottom-value input {
+				width: 100%;
+				height: 42px;
+				border: 2px solid var(--stroke-strong);
+				border-radius: 9px;
+				padding: 0 12px;
+				font-size: 1.02rem;
+			}
+
+			.small-icon {
+				font-size: 1.2rem;
+				color: #50627a;
+			}
+
+			@media (max-width: 900px) {
+				.top,
+				.bottom-row {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="board">
+			<h1 class="title"><span class="teal">HTML</span> <span class="blue">INPUT TYPES</span><span class="icon">&lt;/&gt;</span></h1>
+
+			<section class="top">
+				<article class="panel codes">
+					<p class="code-chip">&lt;input type=<span class="green">"text"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"password"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"button"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"checkbox"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"color"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"date"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"time"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"email"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"file"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"url"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"week"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"number"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"month"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"range"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"reset"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"search"</span>/&gt;</p>
+					<p class="code-chip">&lt;input type=<span class="green">"submit"</span>/&gt;</p>
+				</article>
+
+				<article class="panel inputs">
+					<input class="is-primary" type="text" value="John Doe" />
+					<input type="password" value="123456789" />
+					<button class="btn" type="button">Click Me</button>
+
+					<div class="row-inline">
+						<label><input type="checkbox" /> User</label>
+						<label><input type="checkbox" checked /> Admin</label>
+						<label><input type="checkbox" /> Editor</label>
+					</div>
+
+					<div class="color-wrap"><input type="color" value="#0f8794" /></div>
+					<input type="date" value="2024-05-15" />
+					<input type="time" value="10:30" />
+					<input type="email" value="jane.smith@example.com" />
+					<input type="file" />
+					<input type="url" value="https://www.openai.com" />
+					<input type="week" value="2024-W20" />
+					<input type="number" value="42" />
+
+					<div class="row-inline">
+						<label><input name="stack" type="radio" /> HTML</label>
+						<label><input name="stack" type="radio" checked /> Javascript</label>
+					</div>
+
+					<div class="range-wrap">
+						<p class="range-value"><span id="rangeValue">75</span>%</p>
+						<input id="mainRange" type="range" min="0" max="100" value="75" />
+					</div>
+
+					<input class="btn" type="reset" value="Reset" />
+
+					<div class="search-row">
+						<input type="search" placeholder="🔍 Search topics" />
+						<div class="x">×</div>
+					</div>
+
+					<input class="btn-submit" type="submit" value="Submit" />
+				</article>
+			</section>
+
+			<section class="bottom">
+				<div class="bottom-row">
+					<div class="bottom-label">&lt;input type=<span class="green">"hidden"</span> <span class="small-icon">👤</span></div>
+					<div class="bottom-value"><span class="small-icon">🔒</span><span class="small-icon" style="margin-left: auto">🙈</span></div>
+				</div>
+
+				<div class="bottom-row">
+					<div class="bottom-label">&lt;input type=<span class="green">"tel"</span> pattern=<span class="green">"[0-9]{3}-[0-9]{3}-[0-9]{4}"</span>/&gt;</div>
+					<div class="bottom-value"><input type="tel" value="123-456-7890" /></div>
+				</div>
+
+				<div class="bottom-row">
+					<div class="bottom-label">&lt;input type=<span class="green">"datetime-local"</span>/&gt;</div>
+					<div class="bottom-value"><input type="datetime-local" value="2024-05-15T10:30" /></div>
+				</div>
+			</section>
+		</main>
+
+		<script>
+			const range = document.getElementById("mainRange");
+			const rangeValue = document.getElementById("rangeValue");
+
+			range.addEventListener("input", () => {
+				rangeValue.textContent = range.value;
+			});
+		</script>
+	</body>
+</html>
