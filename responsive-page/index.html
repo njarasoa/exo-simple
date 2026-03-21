@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Responsive Design Demo</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main class="board">
+			<h1 class="title"><span class="teal">RESPONSIVE</span> <span class="blue">DESIGN DEMO</span><span class="icon">RWD</span></h1>
+
+			<section class="info-panel">
+				<div class="info-left">
+					<div class="info-item">
+						<span class="label">@media (min-width: 1001px) → PC</span>
+					</div>
+					<div class="info-item">
+						<span class="label">@media (max-width: 1000px) → Tablet</span>
+					</div>
+					<div class="info-item">
+						<span class="label">@media (max-width: 480px) → Smartphone</span>
+					</div>
+					<div class="info-item">
+						<span class="label">Desktop: grille 3 colonnes</span>
+					</div>
+					<div class="info-item">
+						<span class="label">Tablet: grille 2 colonnes</span>
+					</div>
+					<div class="info-item">
+						<span class="label">Mobile: grille 1 colonne</span>
+					</div>
+					<div class="info-item">
+						<span class="label">Objectif: lisible, compact, sans zoom</span>
+					</div>
+				</div>
+
+				<div class="info-right">
+					<div class="mode-display">
+						<h3>Mode actuel :</h3>
+						<p id="modeLabel" class="mode-label">PC (Desktop)</p>
+					</div>
+					<div class="mode-buttons">
+						<button class="mode-btn">≥ 1001px<br>PC</button>
+						<button class="mode-btn">481px - 1000px<br>Tablette</button>
+						<button class="mode-btn">≤ 480px<br>Smartphone</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="live-demo">
+				<div class="demo-grid">
+					<article class="demo-card">
+						<h2>Bloc principal</h2>
+						<p>Ce bloc occupe plus d'espace sur desktop, puis se réorganise automatiquement sur tablette et mobile.</p>
+						<button class="btn-primary">Action principale</button>
+					</article>
+
+					<article class="demo-card">
+						<h2>Carte secondaire</h2>
+						<p>Le contenu garde la même hiérarchie visuelle selon la taille de l'écran.</p>
+					</article>
+
+					<article class="demo-card">
+						<h2>Carte utilisaire</h2>
+						<p>En smartphone, les cartes passent en pile verticale pour faciliter la lecture.</p>
+					</article>
+				</div>
+			</section>
+		</main>
+
+		<script src="main.js"></script>
+	</body>
+</html>
